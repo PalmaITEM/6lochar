@@ -7,13 +7,14 @@ Tested with _4.x.y_ Linux Kernel releases.
 ## Why?
 
 Even though _6LoWPAN_ is mostly used for _IEEE 802.15.4_ devices, other devices/radios can also benefit from the defined compression mechanisms.
-The goal of this project was to demonstrate _6LoWPAN_ over a resource-constrained _VHF_ link.
+
+The goal of this project was to demonstrate _6LoWPAN_ over a resource-constrained _VHF_ link under the scope of the H2020 MSCA IF [SINet project](https://sinet.item.ntnu.no)
 
 ## How?
 
 This kernel module registers a character device that can be read or written into, which in turn reads and writes _802.15.4_ frames from and to the created _wpan_ interface.
 
-More details on why and how available on https://sinet.dpalma.eu or https://sinet.item.ntnu.no
+More details on why and how available on https://sinet.dpalma.eu or https://sinet.item.ntnu.no (soon)
 
 # Getting started
 
