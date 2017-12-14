@@ -21,7 +21,7 @@ More details on why and how available on https://sinet.dpalma.eu or https://sine
 
 Simply compile the kernel module with `make` and run `./load_module`.
 
-This should create a new _lowpan_ interface with a random _short address_ in the _pan_id_ *0xbeef*.
+This should create a new _lowpan_ interface with a random _short address_ in the _pan_id_ **0xbeef**.
 
 The _load_module_ script loads the compiled kernel module and searches the last 5 lines for the path of the registered character device that will used for communication with the _802.15.4 stack_. After creating the character device a new _lowpan_ interface is added to wpan0.
 
@@ -37,7 +37,7 @@ The _load_module_ script loads the compiled kernel module and searches the last 
 
 ## Connect 6lochar to a radio/application
 
-To connect the newly created interface to a radio or even an application reading and writing _IEEE 802.15.4_ frames the connector example can be used as *inspiration*.
+To connect the newly created interface to a radio or even an application reading and writing _IEEE 802.15.4_ frames the connector example can be used as **inspiration**.
 
 Specifically, this example provides the option to connect to the OWL radio, using the [NGHAM-SPP protocol](https://github.com/skagmo/ngham) in the serial port _/dev/ttyUSB0_, if completed with a parser for NGHAM-SPP frames.
 
