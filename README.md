@@ -37,9 +37,10 @@ The _load_module_ script loads the compiled kernel module and searches the last 
 
 ## Connect 6lochar to a radio/application
 
-To connect the newly created interface to a radio or even an application reading and writing _IEEE 802.15.4_ frames the connector example can be used as **inspiration**.
+To connect the newly created interface to a radio or even an application reading and writing _IEEE 802.15.4_ frames, in the folder _utils_ a connector example can be found and used as **inspiration**.
 
 Specifically, this example provides the option to connect to the OWL radio, using the [NGHAM-SPP protocol](https://github.com/skagmo/ngham) in the serial port _/dev/ttyUSB0_, if completed with a parser for NGHAM-SPP frames.
+
 
 # To-do list
 
