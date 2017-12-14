@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Copyright (c) 2017 David Palma.
+# All Rights Reserved.
+# <david.palma(at)ntnu(dot)no>
+
+#load required modules if not loaded yet
+lsmod | grep -q ieee802154 || modprobe ieee802154
+lsmod | grep -q mac802154 || modprobe mac802154
+
+#load own module
+insmod 6lochar.ko
+
+#Create char dev based on Major number received by the kernel
+$(journalctl -n5 | grep -F "6loch to use driver" | sed "s/.*'\(.*\)'.*/\1/")
+
+#Add write permissions
+chmod a+w /dev/char6lo
+
+
+#Choose a pan_id
+iwpan wpan0 set pan_id 0xbeef
+
+#Generate random short addr
+SHRTADDR=$(uuidgen -t | tr -dc 'a-f0-9' | fold -w 4 | head -n 1)
+iwpan wpan0 set short_addr 0x${SHRTADDR}
+
+#Create lowpan iface
+ip link add link wpan0 lowpan0 type lowpan
+
+#Set "802.15.4" device up
+ip link set wpan0 up
+
+#Set lowpan iface up
+ip link set lowpan0 up
+
+# The PAN-ID will be added automatically if all works
+# 0xbcef => 0xbeef with inverted universal bit 'u'
+# https://tools.ietf.org/html/rfc4291#appendix-A
+# Remove auto addr because compression doesn't work otherwise
+ip a d fe80::bcef:ff:fe00:${SHRTADDR}/64 dev lowpan0
+# Create correct short address to enable compression (w/o PAN-ID)
+ip a a fe80::ff:fe00:${SHRTADDR}/128 dev lowpan0
+
+#disable automatic flow labels to reduce payload
+sysctl -w net/ipv6/auto_flowlabels=0

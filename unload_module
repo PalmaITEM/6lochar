@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#unload own module
+rmmod 6lochar
+
+#Delete char dev
+rm /dev/char6lo 
+
+#when having problems with auto address might as well remove it all
+rmmod mac802154
+rmmod ieee802154_6lowpan
+rmmod ieee802154
