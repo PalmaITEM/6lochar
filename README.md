@@ -14,7 +14,7 @@ The goal of this project was to demonstrate _6LoWPAN_ over a resource-constraine
 
 This kernel module registers a character device that can be read or written into, which in turn reads and writes _802.15.4_ frames from and to the created _wpan_ interface.
 
-More details on why and how available on https://sinet.dpalma.eu or https://sinet.item.ntnu.no (soon)
+More details on why and how available on https://sinet.item.ntnu.no
 
 # Getting started
 
